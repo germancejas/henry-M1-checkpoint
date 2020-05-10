@@ -43,15 +43,15 @@ const {
 // allí la recursión
 
 var objContains = function(obj, prop, value){
-  if (typeof obj === 'object' && obj !== null) {
+  if (typeof obj === "object" && obj !== null) {
     if (obj.hasOwnProperty(prop) && obj.hasOwnProperty(value)) {
-    }else {
-    if (objContains(prop, value)){
+      if (objContains(prop, value)){
       return true;
     }
-      }
+    }
+    }
   return false;
-}
+
 }
 
 // EJERCICIO 2
@@ -94,15 +94,14 @@ var countArray = function(array){
 
 LinkedList.prototype.size = function(){
   if (this.head === null) return 0;
-  if (this.head.next === null){
-     return 1;
-  }
-  var current = this.head;
-  var contador = 0
-     while(current.next.next !=null ){
+    var current = this.head;
+  var contador = 1;
+     while(current.next !== null ){
       current = current.next;
-      return contador++;
+       contador++;
     }
+    return contador;
+
 }
 
 
@@ -123,9 +122,30 @@ LinkedList.prototype.size = function(){
 //    sin antes tener cargada la posición 0 y 1.
 
 LinkedList.prototype.addInPos = function(pos, value){
-
+if (LinkedList.size < pos) {
+  return false;
 }
+  var newNode = new Node(value);
+  var  header = this.head;
 
+      newNode.value = value;
+    if (position == 0) {
+        newNode.next = this.head;
+        header = newNode;
+        return true;
+    }
+ else {
+  for  (i=1; i < pos && head.next !=null; i++) {
+      head = head.next;
+  }
+  if (head.next != null) {
+      newNode.next =  head.next;
+      head.next = newNode;
+  } else {
+      head.next = newNode;
+  }
+  return true;
+}}
 // EJERCICIO 5
 // Implementar el método reverse dentro del prototype de LinkedList que invierta el orden de la lista
 // original y retorne una nueva lista con dichos elementos invertidos de posición.
@@ -214,8 +234,23 @@ var cardGame = function(mazoUserA, mazoUserB){
 //       5
 
 var generateBST = function(array){
-
-}
+for (i = 0; i < array.length; i++){
+  if(i < this.value){
+    if(this.left === null){
+      var newTree = new BinarySearchTree(i);
+      this.left = newTree;
+    } else {
+      this.left.insert(i);
+    }
+  } else {
+    if(this.right === null){
+      var newTree = new BinarySearchTree(i);
+      this.right = newTree;
+    } else {
+      this.right.insert(i);
+    }}
+  }
+  }
 
 
 // ---------------
